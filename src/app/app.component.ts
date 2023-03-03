@@ -8,6 +8,7 @@ import { authConfig } from './sso.config';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  title: string = 'sso1';
   constructor(private oauthService: OAuthService) {
     // this.configureSingleSignOn();
   }
