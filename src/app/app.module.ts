@@ -5,11 +5,11 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { OAuthModule } from 'angular-oauth2-oidc';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 
 import { AstroComponentsModule } from '@astrouxds/angular';
+import { AuthConfigModule } from './components/authconfig/auth.config.module';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, WelcomeComponent],
@@ -18,8 +18,8 @@ import { AstroComponentsModule } from '@astrouxds/angular';
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    OAuthModule.forRoot(),
     AstroComponentsModule,
+    AuthConfigModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

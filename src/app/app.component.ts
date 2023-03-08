@@ -1,35 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
-import { authConfig } from './sso.config';
+import { authConfig } from './components/authconfig/sso.config';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title: string = 'sso1';
-  constructor(private oauthService: OAuthService) {
-    // this.configureSingleSignOn();
-  }
+  username: any = '';
 
-  configureSingleSignOn() {
-    this.oauthService.configure(authConfig);
-    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
-    // this.oauthService.loadDiscoveryDocumentAndTryLogin();
-    this.oauthService.loadDiscoveryDocumentAndLogin();
-  }
-
-  login() {
-    this.oauthService.initImplicitFlow();
-  }
-
-  logout() {
-    this.oauthService.logOut();
+  constructor() {}
+  ngOnInit(): void {
+    this.username = localStorage.getItem('username');
   }
 
   get token() {
-    let claims: any = this.oauthService.getIdentityClaims();
-    return claims ? claims : null;
+    return localStorage.getItem('access_token');
   }
 }
