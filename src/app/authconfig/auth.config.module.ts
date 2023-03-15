@@ -6,6 +6,7 @@ import { AuthConfigService } from './authconfig.service';
 import { authConfig, OAuthModuleConfig } from './sso.config';
 
 export function init_app(authConfigService: AuthConfigService) {
+  console.log('init_app');
   return () => authConfigService.initAuth();
 }
 

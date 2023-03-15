@@ -9,7 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 
 import { AstroComponentsModule } from '@astrouxds/angular';
-import { AuthConfigModule } from './components/authconfig/auth.config.module';
+import { AuthConfigModule } from './authconfig/auth.config.module';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, WelcomeComponent],

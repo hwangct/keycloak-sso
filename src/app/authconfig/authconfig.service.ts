@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { filter } from 'rxjs/operators';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthConfigService {
@@ -17,6 +18,7 @@ export class AuthConfigService {
   // }
 
   constructor(
+    private router: Router,
     private readonly oauthService: OAuthService,
     private readonly authConfig: AuthConfig
   ) {}
@@ -36,17 +38,12 @@ export class AuthConfigService {
           })
         )
         .subscribe(() => this.handleNewToken());
-      // disabling keycloak for now
-      // resolveFn();
-      // continue initializing app or redirect to login-page
-
       this.oauthService.loadDiscoveryDocumentAndLogin().then((isLoggedIn) => {
         if (isLoggedIn) {
+          console.log(`store refresh token`);
           this.oauthService.setupAutomaticSilentRefresh();
-          console.log(`stored refresh token`);
           resolveFn();
         } else {
-          // this.oauthService.initImplicitFlow();
           console.log('logging in now!');
           this.oauthService.initCodeFlow();
           rejectFn();
@@ -57,12 +54,13 @@ export class AuthConfigService {
 
   private handleNewToken() {
     // this._decodedAccessToken = this.oauthService.getAccessToken();
+    console.log('setting access_token: ' + this.oauthService.getAccessToken());
     localStorage.setItem('access_token', this.oauthService.getAccessToken());
     let userClaims: any = this.oauthService.getIdentityClaims();
     let username = userClaims.preferred_username
       ? userClaims.preferred_username
       : '';
-    console.log(userClaims);
+    console.log('userClaims: ' + userClaims);
     localStorage.setItem('given_name', userClaims.given_name);
     localStorage.setItem('username', username);
   }
