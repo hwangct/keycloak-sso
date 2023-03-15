@@ -56,3 +56,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
       - `return hasIdToken && hasAccessToken;`
     - Add guard to router path
       - `{ path: ‘home’, component: HomeComponent, canActivate: [AuthGuard] }`
+
+## Squashed
