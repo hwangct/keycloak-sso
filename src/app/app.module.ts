@@ -12,16 +12,17 @@ import { AstroComponentsModule } from '@astrouxds/angular';
 import { AuthConfigModule } from './authconfig/auth.config.module';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, WelcomeComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-    HttpClientModule,
-    AstroComponentsModule,
-    AuthConfigModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        AppRoutingModule,
+        HttpClientModule,
+        AstroComponentsModule,
+        AuthConfigModule,
+        NavbarComponent, WelcomeComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
